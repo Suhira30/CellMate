@@ -33,7 +33,7 @@
 │ VECTOR DATABASE & DATA PIPELINE                                        │
 │ • Vector DB: Persistent ChromaDB (`vectorstore/`)                      │
 │ • Embeddings: Google Gemini `gemini-embedding-2`                       │
-│ • Parsers: `pdfplumber` + Custom Semantic Chunker (`src/ingestion/`)   │
+│ • Parsers: PyMuPDF / pdfplumber + $0-Cost PyTesseract OCR (`src/ingestion/`) │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -43,34 +43,40 @@
 
 ### Stage 1: Foundation & Environment Setup
 
-- [ ] **Task 1.1**: Initialize project environment (`.env`, Python venv, dependencies in `requirements.txt`).
-- [ ] **Task 1.2**: Create directory structure (`data/raw/resource_book`, `data/processed/`, `vectorstore/`, `doc/`).
-- [ ] **Task 1.3**: Configure `src/config.py` with environment variable loading and validation.
+- [x] **Task 1.1**: Initialize project environment (`.env`, Python venv, dependencies in `requirements.txt`).
+- [x] **Task 1.2**: Create directory structure (`data/raw/resource_book`, `data/processed/`, `vectorstore/`, `doc/`).
+- [x] **Task 1.3**: Configure `src/config.py` with environment variable loading and validation.
 
 ---
 
 ### Stage 2: Document Processing & Vector Indexing Pipeline
 
-- [ ] **Task 2.1**: Implement PDF text parser in `src/ingestion/pdf_parser.py` extracting text and page numbers.
-- [ ] **Task 2.2**: Build semantic recursive chunker in `src/ingestion/chunker.py` (500–1000 characters with 100-char overlap and metadata tagging).
-- [ ] **Task 2.3**: Build ChromaDB store manager in `src/vector_db/store_manager.py` integrated with Gemini `gemini-embedding-2`.
-- [ ] **Task 2.4**: Build batch ingestion pipeline script to populate ChromaDB from `data/raw/` PDFs.
+- [x] **Task 2.1**: Implement multi-engine PDF text & table parser in `src/ingestion/pdf_parser.py` (PyMuPDF / pdfplumber for digital text + $0-cost Local PyTesseract OCR with Gemini 1.5 Flash Vision fallback for image/FlipHTML5 PDFs + local disk caching in `data/processed/ocr_cache/`).
+- [x] **Task 2.2**: Build 6 modular chunking strategies in `experiments/chunkers/` (Fixed, Recursive, Token, Structure-Aware, Semantic, and Hybrid Structure-Recursive) and configure `src/ingestion/chunker.py`.
+- [x] **Task 2.2.1**: Build evaluation inspector (`experiments/inspect_pdf_extraction.py`) and benchmarking suite (`experiments/benchmark_chunkers.py`) comparing chunk counts, average sizes, and sentence boundary integrity % across all 66 extracted NIE textbook pages.
+- [x] **Task 2.3**: Build ChromaDB store manager in `src/vector_db/store_manager.py` (collection creation, add/query/delete operations, persistent storage).
+- [x] **Task 2.3.1**: Build Embedding Engine wrapper in `src/vector_db/embedder.py` using `gemini-embedding-2` (`text-embedding` API, 768-dimension vectors, batch-safe with rate limiting).
+- [x] **Task 2.4**: Build batch ingestion pipeline in `src/ingestion/ingest.py` orchestrating: extract → chunk → **embed** → store into ChromaDB.
+
+> 💡 **Evaluation Note**: Chunking strategy final selection follows a Two-Phase methodology:
+>
+> 1. _Static Data Prep_: Measuring chunk size and boundary integrity.
+> 2. _Retrieval Ground Truth_: Measuring Retrieval Hit Rate & Precision@K during Stage 3 vector search testing before locking in final production choice.
 
 ---
 
 ### Stage 3: RAG Retrieval & Grounded Generation Engine
 
-- [ ] **Task 3.1**: Build vector context retriever in `src/rag/retriever.py` with similarity score thresholding.
-- [ ] **Task 3.2**: Refine grounded response generator in `src/rag/generator.py` enforcing strict NIE terminology rules.
-- [ ] **Task 3.3**: Implement citation extraction logic to output exact source file names and page references.
+- [x] **Task 3.1**: Build vector context retriever in `src/rag/retriever.py` with similarity score thresholding, metadata filtering, and formatted prompt context generation.
+- [x] **Task 3.2**: Refine grounded response generator in `src/rag/generator.py` enforcing strict NIE terminology rules, temperature=0.2, dual SDK support, and model fallback retries.
+- [x] **Task 3.3**: Implement citation extraction logic (`src/rag/citation_extractor.py`), pipeline orchestrator (`src/rag/pipeline.py`), and verification script (`experiments/test_rag_pipeline.py`).
 
 ---
 
 ### Stage 4: FastAPI REST Backend Endpoints
 
-- [ ] **Task 4.1**: Define Pydantic request/response schemas in `src/api/main.py` (`QueryRequest`, `QueryResponse`, `SourceSnippet`).
-- [ ] **Task 4.2**: Implement `POST /query` endpoint connecting backend API to RAG pipeline.
-- [ ] **Task 4.3**: Implement `GET /health` and `GET /system/stats` diagnostic endpoints.
+- [x] **Task 4.1**: Define Pydantic request/response schemas and FastAPI REST endpoints in `src/api/main.py` (`POST /api/v1/query`, `GET /api/v1/health`, `GET /api/v1/system/stats`).
+- [x] **Task 4.2**: Implement interactive Streamlit Web UI application in `src/ui/app.py` with chat stream, quick prompt pills, sidebar configuration, and expandable NIE textbook source citation drawer.
 
 ---
 

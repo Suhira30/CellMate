@@ -33,7 +33,7 @@ A/L BioGenie provides an intelligent, grounded RAG (Retrieval-Augmented Generati
 
 #### 3.1 Document Ingestion Pipeline (`src/ingestion/`)
 
-- **PDF Extraction**: Parse NIE Biology Resource Book Unit 2 PDF, past papers, and marking scheme PDFs using PyPDF2 / pdfplumber.
+- **PDF Extraction**: Parse NIE Biology Resource Book Unit 2 PDF, past papers, and marking scheme PDFs using PyMuPDF / pdfplumber for digital text, with $0-cost Local PyTesseract OCR (and Gemini Vision fallback) for image-based/FlipHTML5 printed PDFs.
 - **Text Chunking**: Chunk text into semantic paragraphs (500–1000 characters) preserving page numbers and source metadata.
 
 #### 3.2 Vector Database & Embeddings (`src/vector_db/`)
