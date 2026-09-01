@@ -179,7 +179,6 @@ class RAGGenerator:
                             "(1,000 requests/day limit on Free Tier).\n\n"
                             "**What you can do:**\n"
                             "- 🕒 Try again tomorrow when the daily API quota resets.\n"
-                            "- 🔑 Or provide a new `GEMINI_API_KEY` in your `.env` or Streamlit Secrets configuration."
                         ),
                         "sources": unique_sources,
                         "is_grounded": False,
