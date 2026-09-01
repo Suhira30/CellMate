@@ -1,0 +1,147 @@
+[
+  {
+    "strategy": "hybrid_structure_recursive",
+    "total_queries": 15,
+    "Hit@1": 73.3,
+    "Hit@4": 93.3,
+    "MRR": 0.833,
+    "Prec@4": 70.0,
+    "per_query": [
+      {
+        "query_id": "Q01",
+        "question": "What are the unique properties of water that make it essenti...",
+        "hit@1": false,
+        "hit@4": true,
+        "mrr": 0.5,
+        "prec@4": 0.75,
+        "top_result_preview": "Physical and chemical properties of water important for life\nWater is a vital inorganic molecule; life could not exist o"
+      },
+      {
+        "query_id": "Q02",
+        "question": "Explain the difference between competitive and non-competiti...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "Certain molecules or ions selectively bind permanently or temporarily to the enzyme\nmolecules and prevent them from form"
+      },
+      {
+        "query_id": "Q03",
+        "question": "What is the role of ATP in cellular metabolism?...",
+        "hit@1": false,
+        "hit@4": true,
+        "mrr": 0.5,
+        "prec@4": 0.75,
+        "top_result_preview": "bind to the enzyme and stimulates the production of ATP by catabolism. If the supply\nof ATP exceed demand catabolism slo"
+      },
+      {
+        "query_id": "Q04",
+        "question": "Describe the structure of a phospholipid bilayer and its rol...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "The Plasma membrane has the following features. It is about 7nm thick. It is mainly\nmade up of a phospholipid bilayer. P"
+      },
+      {
+        "query_id": "Q05",
+        "question": "What elements are essential for living organisms and what pe...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 0.25,
+        "top_result_preview": "here are ninety two elements recognized in nature. Of which, about 20-25%\nelements are essential to continue healthy lif"
+      },
+      {
+        "query_id": "Q06",
+        "question": "What is the lock and key model of enzyme action?...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 0.75,
+        "top_result_preview": "The reaction catalyzed by each enzyme is very specific. The specificity of an enzyme\nresults from its shape. The substra"
+      },
+      {
+        "query_id": "Q07",
+        "question": "How does pH affect enzyme activity?...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "The narrow range of pH in which a particular enzyme catalyzed reaction takes place\nis named as the pH range. The pH at w"
+      },
+      {
+        "query_id": "Q08",
+        "question": "What are the monomers and polymers of carbohydrates?...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 0.75,
+        "top_result_preview": "Most abundant group of organic compound on earth is carbohydrates. Major elemental\ncomposition is C, H, and O. Hydrates "
+      },
+      {
+        "query_id": "Q09",
+        "question": "Describe the primary, secondary, tertiary and quaternary str...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 0.5,
+        "top_result_preview": "© 2018 . All Rights Reserved.\nG.C.E. (Advanced Level) Biology Resource Book\n\nProtein is composed of one or more polypept"
+      },
+      {
+        "query_id": "Q10",
+        "question": "What is osmosis and how does it affect plant cells and anima...",
+        "hit@1": false,
+        "hit@4": false,
+        "mrr": 0.0,
+        "prec@4": 0.0,
+        "top_result_preview": "1. Cell wall\nCell wall is an extracellular structure of plant cells. Animal cells do not have cell walls.\nHowever, proka"
+      },
+      {
+        "query_id": "Q11",
+        "question": "What are the functions of lipids in living organisms?...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "¢ Diverse group of hydrophobic molecules\n¢ Large biological molecules but not considered as polymers or macromolecules.\n"
+      },
+      {
+        "query_id": "Q12",
+        "question": "How does temperature affect the rate of enzyme-controlled re...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "When the temperature increases beyond the optimum temperature, the hydrogen\nbonds, ionic and other weak chemical bonds o"
+      },
+      {
+        "query_id": "Q13",
+        "question": "What is the structure of DNA and what bonds hold the double ...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 0.5,
+        "top_result_preview": "Structure of DNA molecule (Watson and Crick model)\nDNA molecules have two anti-parallel polynucleotide chains that spira"
+      },
+      {
+        "query_id": "Q14",
+        "question": "Explain active transport and how it differs from diffusion....",
+        "hit@1": false,
+        "hit@4": true,
+        "mrr": 0.5,
+        "prec@4": 0.25,
+        "top_result_preview": "Primary cell wall is permeable, relatively thin, flexible, composed mainly of cellulose\nfibers and deposited on the midd"
+      },
+      {
+        "query_id": "Q15",
+        "question": "What is the induced fit model of enzyme action?...",
+        "hit@1": true,
+        "hit@4": true,
+        "mrr": 1.0,
+        "prec@4": 1.0,
+        "top_result_preview": "and active site may slightly change the shape of the active site, so that the substrate\nand the active site become compl"
+      }
+    ]
+  }
+]
