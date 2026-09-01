@@ -169,8 +169,43 @@ class RAGGenerator:
 
             except Exception as e:
                 last_error = e
+                err_str = str(e)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+                    print(f"⚠️ Quota exceeded for model {model}: {e}")
+                    return {
+                        "answer": (
+                            "⌛ **Daily API Quota Limit Reached**\n\n"
+                            "The free-tier API quota for Google Gemini has been exhausted for today "
+                            "(1,000 requests/day limit on Free Tier).\n\n"
+                            "**What you can do:**\n"
+                            "- 🕒 Try again tomorrow when the daily API quota resets.\n"
+                            "- 🔑 Or provide a new `GEMINI_API_KEY` in your `.env` or Streamlit Secrets configuration."
+                        ),
+                        "sources": unique_sources,
+                        "is_grounded": False,
+                        "chunks_used": len(retrieved_chunks),
+                        "is_quota_error": True
+                    }
+
                 print(f"⚠️ Model {model} failed for generation: {e}. Trying fallback model...")
                 time.sleep(1)
+
+        err_str = str(last_error) if last_error else ""
+        if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+            return {
+                "answer": (
+                    "⌛ **Daily API Quota Limit Reached**\n\n"
+                    "The free-tier API quota for Google Gemini has been exhausted for today "
+                    "(1,000 requests/day limit on Free Tier).\n\n"
+                    "**What you can do:**\n"
+                    "- 🕒 Try again tomorrow when the daily API quota resets.\n"
+                    "- 🔑 Or provide a new `GEMINI_API_KEY` in your `.env` or Streamlit Secrets configuration."
+                ),
+                "sources": unique_sources,
+                "is_grounded": False,
+                "chunks_used": len(retrieved_chunks),
+                "is_quota_error": True
+            }
 
         return {
             "answer": f"⚠️ Generation error: All Gemini model candidates failed. Last error: {last_error}",

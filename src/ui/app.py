@@ -408,9 +408,20 @@ if user_query:
                 citations = res.get("citations", [])
                 retrieved_chunks = res.get("retrieved_chunks", [])
             except Exception as ex:
-                answer_text = f"⚠️ An error occurred: {ex}"
+                err_str = str(ex)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+                    answer_text = (
+                        "⌛ **Daily API Quota Limit Reached**\n\n"
+                        "The free-tier API quota for Google Gemini has been exhausted for today "
+                        "(1,000 requests/day limit on Free Tier).\n\n"
+                        "**What you can do:**\n"
+                        "- 🕒 Please try again tomorrow when the daily API quota resets.\n"
+                        "- 🔑 Or update your `GEMINI_API_KEY` in settings."
+                    )
+                else:
+                    answer_text = f"⚠️ An error occurred: {ex}"
         else:
-            answer_text = "⚠️ RAG Pipeline could not be initialized. Please check your API key in Streamlit secrets."
+            answer_text = "⚠️ RAG Pipeline could not be initialized. Please check your API key in settings."
 
         placeholder.markdown(answer_text)
 
