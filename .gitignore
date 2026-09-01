@@ -18,6 +18,9 @@ vectorstore/eval/
 # Local Data Caches
 data/processed/
 
+# Demo recordings & output videos (too large for git)
+Output/
+
 # IDE & OS
 .vscode/
 .idea/
