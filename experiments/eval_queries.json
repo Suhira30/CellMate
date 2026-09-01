@@ -1,0 +1,93 @@
+[
+  {
+    "query_id": "Q01",
+    "question": "What are the unique properties of water that make it essential for life?",
+    "expected_keywords": ["cohesion", "adhesion", "high specific heat", "solvent", "hydrogen bond", "polarity"],
+    "expected_section": "2.1"
+  },
+  {
+    "query_id": "Q02",
+    "question": "Explain the difference between competitive and non-competitive enzyme inhibition.",
+    "expected_keywords": ["competitive", "non-competitive", "active site", "allosteric", "substrate", "inhibitor"],
+    "expected_section": "2.3"
+  },
+  {
+    "query_id": "Q03",
+    "question": "What is the role of ATP in cellular metabolism?",
+    "expected_keywords": ["ATP", "adenosine triphosphate", "energy", "phosphate", "ADP", "hydrolysis"],
+    "expected_section": "2.4"
+  },
+  {
+    "query_id": "Q04",
+    "question": "Describe the structure of a phospholipid bilayer and its role in cell membrane function.",
+    "expected_keywords": ["phospholipid", "bilayer", "hydrophilic", "hydrophobic", "membrane", "selectively permeable"],
+    "expected_section": "2.5"
+  },
+  {
+    "query_id": "Q05",
+    "question": "What elements are essential for living organisms and what percentage of living matter do they form?",
+    "expected_keywords": ["carbon", "hydrogen", "oxygen", "nitrogen", "phosphorus", "sulphur", "elements"],
+    "expected_section": "2.1"
+  },
+  {
+    "query_id": "Q06",
+    "question": "What is the lock and key model of enzyme action?",
+    "expected_keywords": ["lock and key", "active site", "substrate", "enzyme-substrate complex", "specificity"],
+    "expected_section": "2.3"
+  },
+  {
+    "query_id": "Q07",
+    "question": "How does pH affect enzyme activity?",
+    "expected_keywords": ["pH", "enzyme", "denaturation", "optimum pH", "ionization", "active site"],
+    "expected_section": "2.3"
+  },
+  {
+    "query_id": "Q08",
+    "question": "What are the monomers and polymers of carbohydrates?",
+    "expected_keywords": ["monosaccharide", "disaccharide", "polysaccharide", "glucose", "glycosidic bond", "starch", "cellulose"],
+    "expected_section": "2.2"
+  },
+  {
+    "query_id": "Q09",
+    "question": "Describe the primary, secondary, tertiary and quaternary structure of proteins.",
+    "expected_keywords": ["primary", "secondary", "tertiary", "quaternary", "peptide bond", "alpha helix", "beta pleated"],
+    "expected_section": "2.2"
+  },
+  {
+    "query_id": "Q10",
+    "question": "What is osmosis and how does it affect plant cells and animal cells differently?",
+    "expected_keywords": ["osmosis", "water potential", "plasmolysis", "turgid", "crenation", "semi-permeable"],
+    "expected_section": "2.5"
+  },
+  {
+    "query_id": "Q11",
+    "question": "What are the functions of lipids in living organisms?",
+    "expected_keywords": ["lipid", "energy store", "insulation", "membrane", "triglyceride", "fatty acid", "glycerol"],
+    "expected_section": "2.2"
+  },
+  {
+    "query_id": "Q12",
+    "question": "How does temperature affect the rate of enzyme-controlled reactions?",
+    "expected_keywords": ["temperature", "enzyme", "kinetic energy", "denaturation", "optimum temperature", "Q10"],
+    "expected_section": "2.3"
+  },
+  {
+    "query_id": "Q13",
+    "question": "What is the structure of DNA and what bonds hold the double helix together?",
+    "expected_keywords": ["DNA", "double helix", "nucleotide", "hydrogen bond", "base pairing", "deoxyribose", "phosphate"],
+    "expected_section": "2.4"
+  },
+  {
+    "query_id": "Q14",
+    "question": "Explain active transport and how it differs from diffusion.",
+    "expected_keywords": ["active transport", "diffusion", "ATP", "carrier protein", "concentration gradient", "energy"],
+    "expected_section": "2.5"
+  },
+  {
+    "query_id": "Q15",
+    "question": "What is the induced fit model of enzyme action?",
+    "expected_keywords": ["induced fit", "enzyme", "active site", "conformational change", "substrate", "flexible"],
+    "expected_section": "2.3"
+  }
+]
+
