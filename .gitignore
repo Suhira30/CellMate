@@ -1,6 +1,7 @@
 # Environment & Secrets
 .env
 .env.local
+.streamlit/secrets.toml
 
 # Python & Virtual Environments
 venv/
@@ -10,8 +11,11 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Vector DB & Local Data Caches
-vectorstore/
+# Vector DB — ignore eval collections, but commit the production collection
+vectorstore/eval/
+# DO NOT ignore vectorstore/nie_biology_unit02/ — needed for Streamlit Cloud
+
+# Local Data Caches
 data/processed/
 
 # IDE & OS
@@ -23,4 +27,3 @@ Thumbs.db
 # Testing & Coverage
 .pytest_cache/
 .coverage
-

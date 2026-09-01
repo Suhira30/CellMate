@@ -1,16 +1,26 @@
 """
 Central configuration module for CellMate (A/L BioGenie RAG System).
+Reads from st.secrets (Streamlit Community Cloud) or .env (local development).
 """
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# Load .env for local development
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
+# Streamlit Cloud secrets support — overrides .env when running on Streamlit Cloud
+def _get_secret(key: str, default: str = "") -> str:
+    """Read from st.secrets (cloud) or os.environ/.env (local)."""
+    try:
+        import streamlit as st
+        return st.secrets.get(key, os.getenv(key, default))
+    except Exception:
+        return os.getenv(key, default)
+
 # API Keys
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_API_KEY = _get_secret("GEMINI_API_KEY", "")
 
 # Directory Paths
 DATA_DIR = BASE_DIR / "data"
@@ -26,10 +36,10 @@ for dir_path in [RESOURCE_BOOK_DIR, PAST_PAPERS_DIR, MODEL_PAPERS_DIR, PROCESSED
     dir_path.mkdir(parents=True, exist_ok=True)
 
 # RAG & Embedding Settings
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "gemini-embedding-2")
-LLM_MODEL = os.getenv("LLM_MODEL", "gemini-2.5-flash")
-TOP_K = int(os.getenv("TOP_K", "4"))
-SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.65"))
+EMBEDDING_MODEL = _get_secret("EMBEDDING_MODEL", "gemini-embedding-2")
+LLM_MODEL = _get_secret("LLM_MODEL", "gemini-2.5-flash")
+TOP_K = int(_get_secret("TOP_K", "4"))
+SIMILARITY_THRESHOLD = float(_get_secret("SIMILARITY_THRESHOLD", "0.65"))
 
 # Chunking Parameters
 CHUNK_SIZE = 600
