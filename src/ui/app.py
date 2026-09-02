@@ -39,10 +39,16 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     color: #E2E8F0 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-[data-testid="stHeader"] {
-    background: rgba(6, 9, 19, 0.85) !important;
-    backdrop-filter: blur(12px) !important;
-    border-bottom: 1px solid rgba(14, 165, 233, 0.15);
+/* ── Hide Streamlit Default Header, Toolbar, Fork/GitHub Links & Profile Avatar ── */
+#MainMenu, header, [data-testid="stHeader"], [data-testid="stToolbar"], .stAppToolbar {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+footer, [data-testid="stProfileAvatar"], div[class*="viewerBadge"], div[class*="stProfile"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
 }
 
 /* ── Phospholipid Membrane Sidebar ───────────────────────────────── */
