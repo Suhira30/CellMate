@@ -45,10 +45,27 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     visibility: hidden !important;
     height: 0 !important;
 }
-footer, [data-testid="stProfileAvatar"], div[class*="viewerBadge"], div[class*="stProfile"] {
+footer, 
+[data-testid="stProfileAvatar"], 
+[data-testid="stSidebarUserMenu"], 
+[data-testid="stSidebarFooter"], 
+[data-testid="stSidebarNav"], 
+div[class*="viewerBadge"], 
+div[class*="stProfile"], 
+div[class*="stSidebarUserMenu"], 
+div[class*="userMenu"], 
+div[class*="userProfile"],
+img[src*="googleusercontent"],
+img[src*="lh3.googleusercontent.com"],
+img[src*="avatar"],
+img[alt="Avatar"],
+button[title*="Account"],
+button[aria-label*="Account"] {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
 }
 
 /* ── Phospholipid Membrane Sidebar ───────────────────────────────── */
