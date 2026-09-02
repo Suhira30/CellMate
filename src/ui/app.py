@@ -39,33 +39,42 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     color: #E2E8F0 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-/* ── Hide Streamlit Default Header, Toolbar, Fork/GitHub Links & Profile Avatar ── */
-#MainMenu, header, [data-testid="stHeader"], [data-testid="stToolbar"], .stAppToolbar {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-}
-footer, 
+/* ── Bulletproof Hide for Streamlit Cloud Toolbars, Profile Avatars & Badges ── */
+#MainMenu, 
+header, 
+footer,
+.stAppHeader,
+.stAppToolbar,
+[data-testid="stHeader"], 
+[data-testid="stToolbar"], 
 [data-testid="stProfileAvatar"], 
 [data-testid="stSidebarUserMenu"], 
 [data-testid="stSidebarFooter"], 
 [data-testid="stSidebarNav"], 
+[data-testid="stStatusWidget"],
+[data-testid="stElementToolbar"],
 div[class*="viewerBadge"], 
 div[class*="stProfile"], 
 div[class*="stSidebarUserMenu"], 
 div[class*="userMenu"], 
 div[class*="userProfile"],
+div[class*="Profile"],
+button[class*="Profile"],
+button[title*="Account"],
+button[aria-label*="Account"],
+button[aria-label*="profile"],
 img[src*="googleusercontent"],
 img[src*="lh3.googleusercontent.com"],
 img[src*="avatar"],
 img[alt="Avatar"],
-button[title*="Account"],
-button[aria-label*="Account"] {
+a[href*="streamlit.io"],
+.viewerBadge_container__1QSob {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
     width: 0 !important;
     opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 /* ── Phospholipid Membrane Sidebar ───────────────────────────────── */
