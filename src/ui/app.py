@@ -39,6 +39,10 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     color: #E2E8F0 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
+.block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+}
 /* ── Bulletproof Hide for Streamlit Cloud Toolbars, Profile Avatars & Badges ── */
 #MainMenu, 
 header, 
@@ -500,7 +504,25 @@ if user_query:
         citations = []
         retrieved_chunks = []
 
-        if st.session_state.rag_pipeline:
+        # Attempt lazy initialization if pipeline was None on app startup
+        if not st.session_state.rag_pipeline:
+            try:
+                st.session_state.rag_pipeline = CellMateRAG()
+            except Exception as init_err:
+                err_str = str(init_err)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
+                    answer_text = (
+                        "⌛ **Daily API Quota Limit Reached (Anabiosis Spore Mode)**\n\n"
+                        "The free-tier API quota for Google Gemini has been exhausted for today "
+                        "(1,000 requests/day limit on Free Tier).\n\n"
+                        "**What you can do:**\n"
+                        "- 🕒 Please try again tomorrow when the daily API quota resets.\n"
+                        "- 🔑 Or update your `GEMINI_API_KEY` in settings."
+                    )
+                else:
+                    answer_text = f"⚠️ RAG Pipeline could not be initialized: {init_err}"
+
+        if st.session_state.rag_pipeline and not answer_text:
             try:
                 res = st.session_state.rag_pipeline.answer_question(
                     query=user_query,
@@ -524,8 +546,6 @@ if user_query:
                     )
                 else:
                     answer_text = f"⚠️ An error occurred: {ex}"
-        else:
-            answer_text = "⚠️ RAG Pipeline could not be initialized. Please check your API key in settings."
 
         placeholder.markdown(answer_text)
 
