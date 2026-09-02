@@ -12,12 +12,41 @@ load_dotenv(BASE_DIR / ".env")
 
 # Streamlit Cloud secrets support — overrides .env when running on Streamlit Cloud
 def _get_secret(key: str, default: str = "") -> str:
-    """Read from st.secrets (cloud) or os.environ/.env (local)."""
+    """
+    Read from st.secrets (cloud), .env, or .streamlit/secrets.toml (local fallback).
+    """
+    # 1. Try Streamlit runtime secrets if available
     try:
         import streamlit as st
-        return st.secrets.get(key, os.getenv(key, default))
+        val = st.secrets.get(key, None)
+        if val and val != "your_gemini_api_key_here":
+            return str(val)
     except Exception:
-        return os.getenv(key, default)
+        pass
+
+    # 2. Try os.getenv / .env
+    val = os.getenv(key, "")
+    if val and val != "your_gemini_api_key_here":
+        return val
+
+    # 3. Fallback: parse .streamlit/secrets.toml directly if it exists
+    secrets_path = BASE_DIR / ".streamlit" / "secrets.toml"
+    if secrets_path.exists():
+        try:
+            with open(secrets_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith(f"{key} =") or line.startswith(f'{key}='):
+                        parts = line.split("=", 1)
+                        if len(parts) == 2:
+                            parsed_val = parts[1].strip().strip('"').strip("'")
+                            if parsed_val and parsed_val != "your_gemini_api_key_here":
+                                return parsed_val
+        except Exception:
+            pass
+
+    return default
+
 
 # API Keys
 GEMINI_API_KEY = _get_secret("GEMINI_API_KEY", "")
